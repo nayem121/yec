@@ -104,6 +104,17 @@
       transform: translateY(-3px);
     }
     
+    .btn-white {
+      background: var(--white);
+      color: var(--primary);
+    }
+    
+    .btn-white:hover {
+      background: var(--light);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    
     .text-center {
       text-align: center;
     }
@@ -183,8 +194,12 @@
     .nav-link {
       font-weight: 600;
       font-size: 16px;
-      color: var(--dark);
+      color: var(--white);
       position: relative;
+    }
+    
+    .header.scrolled .nav-link {
+      color: var(--dark);
     }
     
     .nav-link::after {
@@ -203,10 +218,6 @@
       width: 100%;
     }
     
-    .header.scrolled .nav-link {
-      color: var(--dark);
-    }
-    
     .hamburger {
       display: none;
       cursor: pointer;
@@ -216,9 +227,13 @@
       display: block;
       width: 25px;
       height: 3px;
-      background: var(--dark);
+      background: var(--white);
       margin: 5px 0;
       transition: all 0.3s ease;
+    }
+    
+    .header.scrolled .hamburger span {
+      background: var(--dark);
     }
     
     /* Hero Section */
@@ -281,6 +296,31 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: 100px;
+      height: 100px;
+      border-top: 5px solid var(--primary);
+      border-left: 5px solid var(--primary);
+      z-index: -1;
+    }
+    
+    .about-image::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border-bottom: 5px solid var(--primary);
+      border-right: 5px solid var(--primary);
+      z-index: -1;
     }
     
     .about-highlight {
@@ -299,22 +339,61 @@
       gap: 30px;
     }
     
+    /* Enhanced Card Design */
     .service-card {
       background: var(--white);
-      border-radius: 10px;
+      border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(241, 155, 192, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+      z-index: -1;
+      opacity: 0;
       transition: all 0.3s ease;
     }
     
     .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border-color: rgba(241, 155, 192, 0.3);
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
     }
     
     .service-image {
       height: 220px;
       overflow: hidden;
+      position: relative;
+    }
+    
+    .service-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-image::after {
+      opacity: 1;
     }
     
     .service-image img {
@@ -329,18 +408,65 @@
     }
     
     .service-content {
-      padding: 25px;
+      padding: 30px;
+      position: relative;
+    }
+    
+    .service-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 30px;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      transform: translateY(-50%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-content::before {
+      opacity: 1;
     }
     
     .service-title {
       font-size: 22px;
       margin-bottom: 15px;
       color: var(--dark);
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-title {
+      color: var(--primary);
     }
     
     .service-text {
       color: var(--gray);
       margin-bottom: 20px;
+    }
+    
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .service-link i {
+      margin-left: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .service-card:hover .service-link i {
+      transform: translateX(5px);
     }
     
     /* Stats Section */
@@ -360,16 +486,35 @@
     
     .stat-item {
       text-align: center;
-      padding: 30px;
+      padding: 40px 30px;
       background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
+      border-radius: 15px;
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: all 0.5s ease;
     }
     
     .stat-item:hover {
       background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+    }
+    
+    .stat-item:hover::before {
+      opacity: 1;
+      transform: scale(1.2);
     }
     
     .stat-number {
@@ -377,12 +522,295 @@
       font-weight: 800;
       margin-bottom: 10px;
       color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .stat-number::after {
+      content: '+';
+      position: absolute;
+      top: 0;
+      right: -20px;
+      font-size: 30px;
+      color: var(--primary-light);
     }
     
     .stat-title {
       font-size: 18px;
       text-transform: uppercase;
       letter-spacing: 1px;
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--white);
+    }
+    
+    .testimonials-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-item {
+      background: var(--light);
+      border-radius: 15px;
+      padding: 40px;
+      margin: 20px 0;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    
+    .testimonial-item::before {
+      content: '\f10d';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+      color: rgba(241, 155, 192, 0.2);
+    }
+    
+    .testimonial-content {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: var(--gray);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+      border: 3px solid var(--primary-light);
+    }
+    
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .testimonial-info h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    
+    .testimonial-info p {
+      color: var(--primary);
+      font-size: 14px;
+    }
+    
+    /* FAQ Section */
+    .faq {
+      background-color: #f9f9f9;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: var(--white);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--dark);
+      transition: all 0.3s ease;
+    }
+    
+    .faq-question:hover {
+      color: var(--primary);
+    }
+    
+    .faq-question i {
+      transition: all 0.3s ease;
+    }
+    
+    .faq-answer {
+      padding: 0 30px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-answer-content {
+      padding-bottom: 20px;
+      color: var(--gray);
+    }
+    
+    .faq-item.active .faq-question {
+      color: var(--primary);
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 1000px;
+    }
+    
+    /* CTA Section */
+    .cta {
+      background: var(--gradient);
+      color: var(--white);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: pulse 8s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .cta-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    
+    .cta-text {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    /* Timeline Section */
+    .timeline {
+      background-color: var(--white);
+      padding: 100px 0;
+    }
+    
+    .timeline-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: var(--primary-light);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 60px;
+    }
+    
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .timeline-content {
+      width: 45%;
+      padding: 30px;
+      background: var(--light);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      left: -60px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::before {
+      right: -60px;
+    }
+    
+    .timeline-date {
+      position: absolute;
+      top: 20px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-date {
+      left: -200px;
+      text-align: right;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-date {
+      right: -200px;
+    }
+    
+    .timeline-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .timeline-text {
+      color: var(--gray);
     }
     
     /* Contact Section */
@@ -586,6 +1014,30 @@
       
       .nav-link {
         font-size: 20px;
+        color: var(--dark);
+      }
+      
+      .timeline-container::before {
+        left: 30px;
+      }
+      
+      .timeline-content {
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-content::before,
+      .timeline-item:nth-child(even) .timeline-content::before {
+        left: -50px;
+        right: auto;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-date,
+      .timeline-item:nth-child(even) .timeline-date {
+        left: 0;
+        right: auto;
+        top: -30px;
+        text-align: left;
       }
     }
     
@@ -618,49 +1070,10 @@
       .footer-grid {
         grid-template-columns: 1fr;
       }
-    }
-    
-    /* Animation Classes */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .fade-up.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .fade-in {
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    
-    .fade-in.active {
-      opacity: 1;
-    }
-    
-    .slide-in-left {
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .slide-in-left.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    
-    .slide-in-right {
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .slide-in-right.active {
-      opacity: 1;
-      transform: translateX(0);
+      
+      .testimonial-item {
+        padding: 30px 20px;
+      }
     }
     
     /* Search Form */
@@ -673,14 +1086,23 @@
       padding-right: 40px;
       border: 2px solid transparent;
       border-radius: 50px;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--dark);
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--white);
       transition: all 0.3s ease;
+    }
+    
+    .header.scrolled .search-input {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--dark);
     }
     
     .search-input:focus {
       outline: none;
       border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .header.scrolled .search-input:focus {
       background: var(--white);
     }
     
@@ -691,8 +1113,12 @@
       transform: translateY(-50%);
       background: transparent;
       border: none;
-      color: var(--dark);
+      color: var(--white);
       cursor: pointer;
+    }
+    
+    .header.scrolled .search-btn {
+      color: var(--dark);
     }
     
     /* Dropdown Menu */
@@ -706,7 +1132,7 @@
       left: 0;
       width: 200px;
       background: var(--white);
-      border-radius: 5px;
+      border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       padding: 10px 0;
       opacity: 0;
@@ -754,7 +1180,8 @@
               <a href="#cyber" class="dropdown-item">Cyber Security</a>
             </div>
           </li>
-          <li class="nav-item"><a href="#stats" class="nav-link">Impact</a></li>
+          <li class="nav-item"><a href="#timeline" class="nav-link">Journey</a></li>
+          <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
           <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
         <form class="search-form" onSubmit="myFunction(); return false;">
@@ -822,6 +1249,7 @@
           <div class="service-content">
             <h3 class="service-title">Initiative</h3>
             <p class="service-text">Unleashing potential, fostering innovation, and driving change for a better future.</p>
+            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="service-card" data-aos="fade-up" data-aos-delay="200">
@@ -831,6 +1259,7 @@
           <div class="service-content">
             <h3 class="service-title">Training</h3>
             <p class="service-text">Bridging the gap between talent & opportunity through comprehensive skill development.</p>
+            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="service-card" data-aos="fade-up" data-aos-delay="300">
@@ -840,6 +1269,7 @@
           <div class="service-content">
             <h3 class="service-title" id="empowerment">Empowerment</h3>
             <p class="service-text">Cultivating strength, fostering growth and enabling success through targeted programs.</p>
+            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="service-card" data-aos="fade-up" data-aos-delay="400">
@@ -849,6 +1279,7 @@
           <div class="service-content">
             <h3 class="service-title">Health and Safety</h3>
             <p class="service-text" id="digital">Heads Up, Hearts Healthy in Digital age for empowered youth and sustainable wellbeing.</p>
+            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="service-card" data-aos="fade-up" data-aos-delay="500">
@@ -858,6 +1289,7 @@
           <div class="service-content">
             <h3 class="service-title">Engagement</h3>
             <p class="service-text" id="cyber">Connecting hearts, minds, and communities through purposeful outreach and meaningful interactions.</p>
+            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="service-card" data-aos="fade-up" data-aos-delay="600">
@@ -867,6 +1299,54 @@
           <div class="service-content">
             <h3 class="service-title">Volunteer</h3>
             <p class="service-text">We are the volunteer disaster response. Stand together, make an impact where it counts!</p>
+            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="section timeline" id="timeline">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="section-title">Our Journey</h2>
+        <p class="section-subtitle">Milestones that define our path</p>
+      </div>
+      <div class="timeline-container">
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-content">
+            <span class="timeline-date">2020</span>
+            <h3 class="timeline-title">Foundation</h3>
+            <p class="timeline-text">Youth Empowerment Cell was established with a vision to empower young minds and create opportunities for growth.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-content">
+            <span class="timeline-date">2021</span>
+            <h3 class="timeline-title">First Training Program</h3>
+            <p class="timeline-text">Successfully launched our first digital skills training program, empowering 15 youth with marketable skills.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-content">
+            <span class="timeline-date">2022</span>
+            <h3 class="timeline-title">Community Expansion</h3>
+            <p class="timeline-text">Expanded our team to 51 members and established partnerships with local organizations to extend our reach.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-content">
+            <span class="timeline-date">2023</span>
+            <h3 class="timeline-title">Digital Wellbeing Initiative</h3>
+            <p class="timeline-text">Launched our Digital Wellbeing program to promote healthy digital habits among youth.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-content">
+            <span class="timeline-date">2024</span>
+            <h3 class="timeline-title">Future Vision</h3>
+            <p class="timeline-text">Working on expanding our programs nationally and creating sustainable impact through youth empowerment.</p>
           </div>
         </div>
       </div>
@@ -893,6 +1373,109 @@
           <div class="stat-number" data-count="3">0</div>
           <div class="stat-title">Running Tasks</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="section-title">Testimonials</h2>
+        <p class="section-subtitle">What our trainees say about us</p>
+      </div>
+      <div class="testimonials-container">
+        <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
+          <p class="testimonial-content">The training program at YEC completely transformed my career path. I gained valuable skills that helped me secure freelance projects and build my portfolio.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="/placeholder.svg?height=60&width=60" alt="Testimonial Avatar">
+            </div>
+            <div class="testimonial-info">
+              <h4>Sarah Johnson</h4>
+              <p>Web Developer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
+          <p class="testimonial-content">YEC provided me with not just technical skills, but also the confidence to pursue my dreams. The mentorship and guidance were invaluable for my personal growth.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="/placeholder.svg?height=60&width=60" alt="Testimonial Avatar">
+            </div>
+            <div class="testimonial-info">
+              <h4>Michael Rahman</h4>
+              <p>Digital Marketer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find answers to common questions</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="faq-question">
+            <span>How can I join the Youth Empowerment Cell?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              You can join YEC by filling out the application form on our website or by contacting us directly. We welcome passionate individuals who want to make a difference in their communities.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="faq-question">
+            <span>What programs do you offer for youth?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              We offer various programs including digital skills training, leadership development, community engagement initiatives, and health and safety awareness. Our programs are designed to empower youth with practical skills for the future.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="faq-question">
+            <span>Are your programs free of charge?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Most of our programs are offered free of charge to ensure accessibility for all youth. Some specialized training programs may have a nominal fee, but we offer scholarships for those who cannot afford it.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="faq-question">
+            <span>How can I volunteer with YEC?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              We welcome volunteers who are passionate about youth empowerment. You can apply through our website or contact us directly to discuss volunteer opportunities that match your skills and interests.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta">
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2 class="cta-title">Ready to Join Our Community?</h2>
+        <p class="cta-text">Be part of a movement that's empowering youth and creating positive change in communities. Join us today!</p>
+        <a href="#contact" class="btn btn-white">Get Started</a>
       </div>
     </div>
   </section>
@@ -1095,6 +1678,16 @@
     if (document.querySelector('#stats')) {
       observer.observe(document.querySelector('#stats'));
     }
+    
+    // FAQ Accordion
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        faqItem.classList.toggle('active');
+      });
+    });
     
     // Search form functionality
     function myFunction() {
