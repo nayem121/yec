@@ -1,240 +1,1106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Youth Empowerment Cell</title>
-	<link rel="icon" type="image/x-icon" href="/images/YEC.ico">
+  <title>Youth Empowerment Cell</title>
+  <link rel="icon" type="image/x-icon" href="/images/YEC.ico">
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<style>
-		body {
-			position: relative;
-			background-color:gainsboro;
-		}
-		.bg-nav {
-			background-color: #F19BC0;
-		}
-		.jumbotron-bg {
-			background-image: url("images/together.webp");
-			background-repeat: no-repeat;
-		}
-		.cardimg{
-			min-height: inherit;
-			min-width: inherit;
-			
-		}
-		
-	</style>
-	
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #F19BC0;
+      --primary-dark: #e07ba6;
+      --primary-light: #ffd1e3;
+      --secondary: #4a86e8;
+      --dark: #222831;
+      --gray: #393e46;
+      --light: #f8f9fa;
+      --white: #ffffff;
+      --success: #28a745;
+      --gradient: linear-gradient(135deg, #F19BC0 0%, #e07ba6 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: var(--white);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    img {
+      max-width: 100%;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 16px;
+    }
+    
+    .btn-primary {
+      background: var(--gradient);
+      color: var(--white);
+      box-shadow: 0 4px 15px rgba(241, 155, 192, 0.4);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(241, 155, 192, 0.5);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .section {
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 50px;
+    }
+    
+    .text-center .section-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      padding: 20px 0;
+    }
+    
+    .header.scrolled {
+      background: var(--white);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+    
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-item {
+      margin-left: 30px;
+    }
+    
+    .nav-link {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--dark);
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .header.scrolled .nav-link {
+      color: var(--dark);
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--dark);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/together.webp');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      color: var(--white);
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-title {
+      font-size: 56px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+    
+    .hero-subtitle {
+      font-size: 24px;
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+    
+    .hero-text {
+      font-size: 18px;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+    
+    /* About Section */
+    .about {
+      background-color: var(--white);
+    }
+    
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .about-text {
+      flex: 1;
+    }
+    
+    .about-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-highlight {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    /* Services Section */
+    .services {
+      background-color: #f9f9f9;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-image {
+      height: 220px;
+      overflow: hidden;
+    }
+    
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .service-card:hover .service-image img {
+      transform: scale(1.1);
+    }
+    
+    .service-content {
+      padding: 25px;
+    }
+    
+    .service-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .service-text {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    
+    /* Stats Section */
+    .stats {
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/together.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--white);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-5px);
+    }
+    
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .stat-title {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Contact Section */
+    .contact {
+      background-color: var(--white);
+    }
+    
+    .contact-content {
+      display: flex;
+      gap: 50px;
+    }
+    
+    .contact-info {
+      flex: 1;
+    }
+    
+    .contact-form {
+      flex: 1;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: var(--primary);
+      font-size: 20px;
+    }
+    
+    .contact-text h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    
+    .contact-text p {
+      color: var(--gray);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(241, 155, 192, 0.2);
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 80px 0 0;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-title {
+      font-size: 20px;
+      margin-bottom: 25px;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-text {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-link {
+      margin-bottom: 15px;
+    }
+    
+    .footer-link a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+    }
+    
+    .footer-link a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    .footer-bottom {
+      padding: 20px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-bottom p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .section {
+        padding: 80px 0;
+      }
+      
+      .hero-title {
+        font-size: 48px;
+      }
+      
+      .hero-subtitle {
+        font-size: 20px;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+      
+      .contact-content {
+        flex-direction: column;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .nav-menu.active {
+        left: 0;
+      }
+      
+      .nav-item {
+        margin: 20px 0;
+      }
+      
+      .nav-link {
+        font-size: 20px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 30px;
+      }
+      
+      .hero-title {
+        font-size: 36px;
+      }
+      
+      .hero-subtitle {
+        font-size: 18px;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Animation Classes */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-up.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    
+    .fade-in.active {
+      opacity: 1;
+    }
+    
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .slide-in-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .slide-in-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Search Form */
+    .search-form {
+      position: relative;
+    }
+    
+    .search-input {
+      padding: 10px 15px;
+      padding-right: 40px;
+      border: 2px solid transparent;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--dark);
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--white);
+    }
+    
+    .search-btn {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--dark);
+      cursor: pointer;
+    }
+    
+    /* Dropdown Menu */
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      background: var(--white);
+      border-radius: 5px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .dropdown-item {
+      display: block;
+      padding: 10px 20px;
+      color: var(--dark);
+      transition: all 0.3s ease;
+    }
+    
+    .dropdown-item:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding-left: 25px;
+    }
+  </style>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
-	<nav class="navbar-expand-lg navbar-dark bg-nav">
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-		  <li class="nav-item active"> <a class="nav-link" href="#">YEC <span class="sr-only">(current)</span></a> </li>
-		  <li class="nav-item"> <a class="nav-link" href="#section1">Course</a> </li>
-		  <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Program </a>
-			<div class="dropdown-menu bg-nav" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="#section1">Empowerment</a>
-			  <div class="dropdown-divider"></div>
-			  <a class="dropdown-item" href="#section1">Digital Welbeing</a> <a class="dropdown-item" href="#section1">Cyber security</a> </div>
-		  </li>
-		  <li class="nav-item"> <a class="nav-link" href="#section4">Contact</a> </li>
-		  <li class="nav-item"> &nbsp; </li>
-		</ul>
-		<form class="form-inline my-2 my-lg-0" onSubmit="myFunction(); return false;">
-		  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-		  <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-		</form>
-	  </div>
-	</nav>
-	<div class="jumbotron jumbotron-fluid text-center jumbotron-bg">
-	  <h1 class="display-4">Youth Empowerment Cell</h1>
-	  <p class="lead">Inspire Potential, Ignite Change, Youth Empowerment Cell shaping a bright future.</p>
-		<br>
-	  <p>Our Youth Empowerment Cell is turning youthful energy into global solutions and sustainable futures.</p>
-	  <p class="lead"> <a class="btn btn-primary btn-lg" href="#section1" role="button">Learn more</a> </p>
-	</div>
-	<div class="container">
-	  <div class="row text-center">
-		<div class="img-fluid col-md-12"><strong>Empowering Youth, fostering change</strong>: Join our community outreach for a brighter tomorrow!
-		 <p class="text-decoration-none"> Unleash Your Tech Skills, Power Your Future! The Youth Empowerment Cell isn't just about youthful spirit, it's about channeling your digital prowess into global freelance opportunities. We equip you with the training and resources to thrive in the booming IT marketplace. Join our network and become a sought-after architect of the future's tech landscape, tackling real-world challenges from anywhere in the world. This is your chance to build a career, not a resume.
-		  </p>
-		  </div>
-	  </div>
-	  <br>
-	  <hr class="border-primary">
-	  <br>
-	  <div id="section1" class="row">
-		<div class="col-sm-4 border-success p-2">
-		  <div> <img class="card-img-top img-fluid rounded cardimg" src="images/innovation.webp" alt="Initiative">
-			<div class="card-body">
-			  <h4 class="card-title text-center">Initiative</h4>
-			  <p class="card-text text-center">Unleashing potential, fostering innovation, and driving change for a better future.</p>
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-4 border-success p-2">
-		  <div> <img class="card-img-top img-fluid rounded cardimg" src="images/training.webp" alt="Training">
-			<div class="card-body">
-			  <h4 class="card-title text-center">Training</h4>
-			  <p class="card-text text-center">Bridging the gap between talent & opportunity</p>
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-4 border-success p-2">
-		  <div> <img class="card-img-top img-fluid rounded cardimg" src="images/empowerment.webp" alt="Empowement">
-			<div class="card-body">
-			  <h4 class="card-title text-center">Empowement</h4>
-			  <p class="card-text text-center">Cultivating strength
-				fostering growth and enabling success.</p>
 
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-4 border-success p-2">
-		  <div> <img class="card-img-top img-fluid rounded cardimg" src="images/health.webp" alt="Health">
-			<div class="card-body">
-			  <h4 class="card-title text-center">Health and Safety</h4>
-			  <p class="card-text text-center">Heads Up, Hearts Healthy in Digital age <br> for empowered youth.</p>
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-4 border-success p-2">
-		  <div> <img class="card-img-top img-fluid rounded cardimg" src="images/engagement.webp" alt="Engagement">
-			<div class="card-body">
-			  <h4 class="card-title text-center">Engagement</h4>
-			  <p class="card-text text-center">Connecting hearts, minds, and communities through purposeful outreach.</p>
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-4 border-success p-2">
-		  <div> <img class="card-img-top img-fluid rounded cardimg" src="images/volunteer.webp" alt="Volunteer">
-			<div class="card-body">
-			  <h4 class="card-title text-center">Volunteer</h4>
-			  <p class="card-text text-center">We are the volunteer disaster response. Stand together, make an impact where it counts!</p>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  <br/>
-	  <div class="row-cols-lg-1"> </div>
-	  <br/>
-	  <div class="row border-info">
-		<div class="col-md-4 border-primary">
-		  <p class="text-center text-uppercase"><strong>Happy trainee</strong></p>
-		  <p class="text-center"><strong>15&nbsp;</strong></p>
-		</div>
-		<div class="col-md-4 ">
-		  <p class="text-center text-uppercase"><strong>Team members</strong></p>
-		  <p class="text-center"><strong>51 </strong></p>
-		</div>
-		<div class="col-md-4 ">
-		  <p class="text-center text-uppercase"><strong>Running Tasks</strong></p>
-		  <p class="text-center"><strong>3&nbsp;</strong></p>
-		</div>
-	  </div>
-	  <br>
-	  <br>
-	  <hr class="bg-danger">
-	  <div id="section4" class="row"> 
-		<!-- Footer -->
-		<footer
-			  class="text-center text-lg-start text-white"
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">YEC</a>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item dropdown">
+            <a href="#services" class="nav-link">Programs</a>
+            <div class="dropdown-menu">
+              <a href="#empowerment" class="dropdown-item">Empowerment</a>
+              <a href="#digital" class="dropdown-item">Digital Wellbeing</a>
+              <a href="#cyber" class="dropdown-item">Cyber Security</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="#stats" class="nav-link">Impact</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <form class="search-form" onSubmit="myFunction(); return false;">
+          <input type="search" class="search-input" placeholder="Search...">
+          <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-			  > 
-		  <!-- Grid container -->
-		  <div class="p-4 pb-0"> 
-			<!--Grid row-->
-			<div class="row"> 
-			  <!-- Grid column -->
-			  <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-				<h6 class="text-uppercase mb-4 font-weight-bold text-primary"> YEC </h6>
-				<p class="text-dark"> Shaping a bright future together with Youth Empowerment Cell (YEC). </p>
-			  </div>
-			  <!-- Grid column -->
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+        <h1 class="hero-title">Youth Empowerment Cell</h1>
+        <p class="hero-subtitle">Inspire Potential, Ignite Change, Shape the Future</p>
+        <p class="hero-text">Our Youth Empowerment Cell is turning youthful energy into global solutions and sustainable futures. Join us in creating a better tomorrow.</p>
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-primary">Learn More</a>
+          <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-			  <hr class="w-100 clearfix d-md-none" />
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-subtitle">Empowering Youth, Fostering Change</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text" data-aos="fade-right" data-aos-delay="200">
+          <p class="about-highlight">Join our community outreach for a brighter tomorrow!</p>
+          <p>Unleash Your Tech Skills, Power Your Future! The Youth Empowerment Cell isn't just about youthful spirit, it's about channeling your digital prowess into global freelance opportunities.</p>
+          <p>We equip you with the training and resources to thrive in the booming IT marketplace. Join our network and become a sought-after architect of the future's tech landscape, tackling real-world challenges from anywhere in the world.</p>
+          <p>This is your chance to build a career, not a resume.</p>
+          <a href="#services" class="btn btn-primary" style="margin-top: 20px;">Our Programs</a>
+        </div>
+        <div class="about-image" data-aos="fade-left" data-aos-delay="300">
+          <img src="images/together.webp" alt="Youth Empowerment">
+        </div>
+      </div>
+    </div>
+  </section>
 
-			  <!-- Grid column -->
-			  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-				<h6 class="text-uppercase mb-4 font-weight-bold text-primary">Get in touch</h6>
-				<p> <a class="dropdown-item" href="#section1">Empowerment</a> </p>
-				<p> <a class="dropdown-item" href="#section1">Cyber security</a> </p>
-				<p> <a class="dropdown-item" href="#section1">Digital Welbeing</a> </p>
-			  </div>
-			  <!-- Grid column -->
+  <!-- Services Section -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="section-title">Our Programs</h2>
+        <p class="section-subtitle">Comprehensive solutions for youth development</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-image">
+            <img src="images/innovation.webp" alt="Initiative">
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Initiative</h3>
+            <p class="service-text">Unleashing potential, fostering innovation, and driving change for a better future.</p>
+          </div>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-image">
+            <img src="images/training.webp" alt="Training">
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Training</h3>
+            <p class="service-text">Bridging the gap between talent & opportunity through comprehensive skill development.</p>
+          </div>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-image">
+            <img src="images/empowerment.webp" alt="Empowerment">
+          </div>
+          <div class="service-content">
+            <h3 class="service-title" id="empowerment">Empowerment</h3>
+            <p class="service-text">Cultivating strength, fostering growth and enabling success through targeted programs.</p>
+          </div>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-image">
+            <img src="images/health.webp" alt="Health">
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Health and Safety</h3>
+            <p class="service-text" id="digital">Heads Up, Hearts Healthy in Digital age for empowered youth and sustainable wellbeing.</p>
+          </div>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="service-image">
+            <img src="images/engagement.webp" alt="Engagement">
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Engagement</h3>
+            <p class="service-text" id="cyber">Connecting hearts, minds, and communities through purposeful outreach and meaningful interactions.</p>
+          </div>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="service-image">
+            <img src="images/volunteer.webp" alt="Volunteer">
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Volunteer</h3>
+            <p class="service-text">We are the volunteer disaster response. Stand together, make an impact where it counts!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-			  <hr class="w-100 clearfix d-md-none" />
+  <!-- Stats Section -->
+  <section class="section stats" id="stats">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="section-title">Our Impact</h2>
+        <p class="section-subtitle">Making a difference in numbers</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-number" data-count="15">0</div>
+          <div class="stat-title">Happy Trainees</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-number" data-count="51">0</div>
+          <div class="stat-title">Team Members</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-number" data-count="3">0</div>
+          <div class="stat-title">Running Tasks</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-			  <!-- Grid column -->
-			  <hr class="w-100 clearfix d-md-none" />
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+      </div>
+      <div class="contact-content">
+        <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-text">
+              <h4>Location</h4>
+              <p>419<sup>th</sup> holding, Shadanpur, Bashkhali, Chattogram, Bangladesh.</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <h4>Email</h4>
+              <p>yecbd@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-text">
+              <h4>Phone</h4>
+              <p>+88 01519700121</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form" data-aos="fade-left" data-aos-delay="300">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Your Email">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-			  <!-- Grid column -->
-			  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-				<h6 class="text-uppercase mb-4 font-weight-bold text-primary">Contact</h6>
-				  <p class="text-dark"><i class="fas fa-home mr-3"></i> 419<sup>th</sup> holding, Shadanpur, Bashkhali, Chattogram, Bangladesh.</p>
-				<p class="text-dark"><i class="fas fa-envelope mr-3"></i> yecbd@gmail.com</p>
-				<p class="text-dark"><i class="fas fa-phone mr-3"></i> +88 01519700121</p>
-			  </div>
-			  <!-- Grid column --> 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3 class="footer-title">YEC</h3>
+          <p class="footer-text">Shaping a bright future together with Youth Empowerment Cell (YEC).</p>
+        </div>
+        <div class="footer-links-container">
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#home">Home</a></li>
+            <li class="footer-link"><a href="#about">About</a></li>
+            <li class="footer-link"><a href="#services">Programs</a></li>
+            <li class="footer-link"><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-container">
+          <h3 class="footer-title">Programs</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#empowerment">Empowerment</a></li>
+            <li class="footer-link"><a href="#digital">Digital Wellbeing</a></li>
+            <li class="footer-link"><a href="#cyber">Cyber Security</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3 class="footer-title">Contact Us</h3>
+          <p class="footer-text"><i class="fas fa-home mr-3"></i> 419<sup>th</sup> holding, Shadanpur, Bashkhali, Chattogram, Bangladesh.</p>
+          <p class="footer-text"><i class="fas fa-envelope mr-3"></i> yecbd@gmail.com</p>
+          <p class="footer-text"><i class="fas fa-phone mr-3"></i> +88 01519700121</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/youthecbd/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/youthecbd" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@youthecbd" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>Copyright &copy; 2024 - <a href="#">YEC</a>, All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-			  <!-- Grid column -->
-			  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-				<h6 class="text-uppercase mb-4 font-weight-bold text-primary">Follow us</h6>
-
-				<!-- Facebook --> 
-				<a
-				   class="btn btn-primary btn-floating m-1"
-				   style="background-color: #3b5998"
-				   href="https://www.facebook.com/youthecbd/"
-				   role="button"
-				   ><i class="fab fa-facebook-f"></i
-				  >F</a> 
-
-				<!-- X --> 
-				<a
-				   class="btn btn-primary btn-floating m-1"
-				   style="background-color: #55acee"
-				   href="https://x.com/youthecbd"
-				   role="button"
-				   ><i class="fab fa-twitter"></i
-				  >X</a> 
-
-				<!-- Youtube --> 
-				<a
-				   class="btn btn-primary btn-floating m-1"
-				   style="background-color: #FF0000"
-				   href="https://www.youtube.com/@youthecbd"
-				   role="button"
-				   ><i class="fab fa-google"></i
-				  >Y</a> </div>
-			</div>
-			<!-- Section: Links --> 
-		  </div>
-		  <!-- Grid container --> 
-
-		  <!-- Copyright -->
-		  <div
-			 class="text-center p-3"
-			 style="background-color: rgba(0, 0, 0, 0.2)"
-			 >
-			<p class="text-dark">Copyright &copy; 2024 - <a href="#">YEC</a>, All Rights Reserved.&nbsp;&nbsp; <a href="#">&nbsp;</a></p>
-		  </div>
-		  <!-- Copyright --> 
-		</footer>
-		<!-- Footer --> 
-
-	  </div>
-	</div>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
-
-	<!-- Include all compiled plugins (below), or include individual files as needed --> 
-	<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          const headerHeight = document.querySelector('.header').offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Animate stats counter
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-count'));
+      const duration = 2000; // 2 seconds
+      const step = target / duration * 10;
+      let current = 0;
+      
+      const timer = setInterval(() => {
+        current += step;
+        if (current > target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 10);
+    }
+    
+    // Intersection Observer for stats animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          statNumbers.forEach(number => {
+            animateCounter(number);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (document.querySelector('#stats')) {
+      observer.observe(document.querySelector('#stats'));
+    }
+    
+    // Search form functionality
+    function myFunction() {
+      alert('Search functionality will be implemented soon!');
+      return false;
+    }
+  </script>
 </body>
 </html>
