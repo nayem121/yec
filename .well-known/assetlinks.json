@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.nuc.tforce",
+      "sha256_cert_fingerprints": [
+        "0A:2C:DA:5D:E1:F5:40:72:D2:A1:3C:39:13:FC:FA:1B:0D:8D:58:F5:4A:26:ED:13:2E:89:EB:83:F1:E6:D2:3C"
+      ]
+    }
+  }
+]
